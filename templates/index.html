@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text Summarizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Cut long text down to what matters</h1>
+      <p class="lede">Paste an article, notes or an essay. The summarizer picks the most important sentences and highlights them in your original text.</p>
+    </header>
+
+    <label for="text" class="sr">Text to summarize</label>
+    <textarea id="text" placeholder="Paste or type at least 15 words here..."></textarea>
+    <div class="counts" aria-live="polite">
+      <span id="c-words">0 words</span>
+      <span id="c-sent">0 sentences</span>
+      <span id="c-chars">0 characters</span>
+    </div>
+
+    <div class="controls">
+      <div class="seg" role="radiogroup" aria-label="Summary length">
+        <label><input type="radio" name="length" value="short"><span>Short</span></label>
+        <label><input type="radio" name="length" value="medium" checked><span>Medium</span></label>
+        <label><input type="radio" name="length" value="long"><span>Long</span></label>
+      </div>
+      <div class="actions">
+        <button id="clear" type="button" class="ghost">Clear</button>
+        <button id="generate" type="button">Generate summary</button>
+      </div>
+    </div>
+    <p id="error" role="alert" hidden></p>
+
+    <section id="result" hidden aria-live="polite">
+      <div class="head">
+        <h2>Summary</h2>
+        <button id="copy" type="button" class="ghost">Copy summary</button>
+      </div>
+      <p id="summary"></p>
+      <p id="stats" class="stats"></p>
+      <p id="keywords" class="stats"></p>
+
+      <h3>Your text, with the selected sentences marked</h3>
+      <p id="source" class="source"></p>
+    </section>
+  </main>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
